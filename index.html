@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Digital Clock</title>
+    <style type="text/css">
+
+      body{
+        background: black;
+      }
+
+      .clock{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        color: yellow;
+        font-size: 150px;
+        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #ff0080, 0 0 30px #ff0080, 0 0 40px #ff0080, 0 0 55px #ff0080, 0 0 75px #ff0080;
+        border: 15px solid yellow;
+        box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #ff0080, 0 0 30px #ff0080, 0 0 40px #ff0080, 0 0 55px #ff0080, 0 0 75px #ff0080;
+        padding: 0px 2px 0px 2px; /*top, left, bottom, right */
+      }
+
+
+    </style>
+  </head>
+  <body>
+    <div id="MyClockDisplay" class="clock"></div>
+    <script type="text/javascript">
+
+      function showTime(){
+        var date = new Date();
+        var h = date.getHours(); // 0 - 23
+        var m = date.getMinutes(); //0 - 59
+        var s = date.getSeconds(); // 0 - 59
+        var session = "AM"
+
+        if(h == 0){
+          h = 12;
+        }
+
+        if(h > 12){
+          h = h - 12;
+          session = "PM"
+        }
+
+        h = (h < 10) ? "0" + h : h; //true : false
+        m = (m < 10) ? "0" + m : m; //true : false
+        s = (s < 10) ? "0" + s : s; //true : false
+
+        var time = h + ":" + m + ":" + s + " " + session ;
+        document.getElementById("MyClockDisplay").innerText = time; //cross browser support
+        document.getElementById("MyClockDisplay").textContent = time; //cross browser support
+
+        setTimeout(showTime, 1000);
+      }
+
+      showTime();
+
+    </script>
+  </body>
+</html>
